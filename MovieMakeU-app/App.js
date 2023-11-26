@@ -23,6 +23,9 @@ import IUMovie from './MovieReview/IU_movie';
 import Sleep from './MovieReview/Sleep';
 import Venice from './MovieReview/Venice';
 
+// VodReview 폴더 내 컴포넌트들 임포트
+import Avatar from './VodReview/Avatar';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -45,6 +48,7 @@ export default function App() {
         <Stack.Screen name="IUMovie" component={IUMovie} />
         <Stack.Screen name="Sleep" component={Sleep} />
         <Stack.Screen name="Venice" component={Venice} />
+        <Stack.Screen name="Avatar" component={Avatar} />      
       </Stack.Navigator>
     </NavigationContainer>
   );

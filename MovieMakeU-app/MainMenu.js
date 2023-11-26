@@ -15,11 +15,11 @@ export default function MainMenu() {
   ];
 
   const vodposters = [
-    require('./VodPoster/Avatar_VodPoster.png'),
-    require('./VodPoster/Avengers_VodPoster.png'),
-    require('./VodPoster/Matrix_VodPoster.png'),
-    require('./VodPoster/Ode_VodPoster.png'),
-    require('./VodPoster/Titanic_VodPoster.png'),
+    { source: require('./VodPoster/Avatar_VodPoster.png'), screen: 'Avatar' },
+    { source: require('./VodPoster/Avengers_VodPoster.png'), screen: 'Avengers' },
+    { source: require('./VodPoster/Matrix_VodPoster.png'), screen: 'Matrix' },
+    { source: require('./VodPoster/Ode_VodPoster.png'), screen: 'Ode' },
+    { source: require('./VodPoster/Titanic_VodPoster.png'), screen: 'Titanic' },
   ];
 
   return (
@@ -79,11 +79,16 @@ export default function MainMenu() {
         <Text style={styles.vodTitle}>VOD</Text>
         <ScrollView horizontal style={styles.vodScroll}>
           {vodposters.map((poster, index) => (
-            <Image
+            <TouchableOpacity 
               key={index}
-              source={poster}
-              style={styles.vodPoster}
-            />
+              onPress={() => navigation.navigate(poster.screen)}
+              style={styles.vodPosterTouchable}
+            >
+              <Image
+                source={poster.source}
+                style={styles.vodPoster}
+              />
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
