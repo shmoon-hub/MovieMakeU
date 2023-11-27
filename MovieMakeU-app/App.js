@@ -8,13 +8,14 @@ import Start from './Start';
 import Login from './Login';
 import SignUp from './SignUp';
 import MainMenu from './MainMenu';
-import Cart from './cart';
+import Cart from './Cart';        // 수정함 기존 ./cart => ./Cart
 import AddCart from './AddCart';
-import CheckCart from './CheckCart';
+//import CheckCart from './CheckCart';
 import Map from './Map';
 import Event from './Event';
 import Top10 from './Top10';
 import DrawNavi from './DrawNavi';
+import ShowCart from './ShowCart';
 
 // MovieReview 폴더 내 컴포넌트들 임포트
 import DrCheon from './MovieReview/Dr_cheon';
@@ -38,7 +39,6 @@ export default function App() {
         <Stack.Screen name="MainMenu" component={MainMenu} />
         <Stack.Screen name="Cart" component={Cart}/>
         <Stack.Screen name="AddCart" component={AddCart} />
-        <Stack.Screen name="CheckCart" component={CheckCart}/>
         <Stack.Screen name="Map" component={Map}/>
         <Stack.Screen name="Event" component={Event} />
         <Stack.Screen name="Top10" component={Top10} />
@@ -48,7 +48,8 @@ export default function App() {
         <Stack.Screen name="IUMovie" component={IUMovie} />
         <Stack.Screen name="Sleep" component={Sleep} />
         <Stack.Screen name="Venice" component={Venice} />
-        <Stack.Screen name="Avatar" component={Avatar} />      
+        <Stack.Screen name="Avatar" component={Avatar} />   
+        <Stack.Screen name="ShowCart" component={ShowCart} />   
       </Stack.Navigator>
     </NavigationContainer>
   );
