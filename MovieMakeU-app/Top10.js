@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator,Linking } from 'react-native';
 
 const API_KEY = "8ba69634dec57d3b503281398fdaef7e"; // 실제 API 키로 교체해야 함
 
@@ -23,6 +23,61 @@ const Top10 = () => {
     setMovies(json.boxOfficeResult.dailyBoxOfficeList);
     setLoading(false);
   };
+
+  // vod top10은 로컬로 저장
+  const VODList = [
+    {
+      id: '1',
+      title: '1. 용감한 시민',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_MM01_MM0000000002&autoplay=y',
+    },
+    {
+      id: '2',
+      title: '2. 천박사 퇴마 연구소',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_EN01_EN000001067&autoplay=y',
+    },
+    {
+      id: '3',
+      title: '3. 크리에이터',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_CA01_DY0000011618&autoplay=y',
+    },
+    {
+      id: '4',
+      title: '4. 밀수',
+      url: 'https://serieson.naver.com/v2/movie/589552',
+    },
+    {
+      id: '5',
+      title: '5. 화란',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_MX01_MX000000033&autoplay=y',
+    },
+    {
+      id: '6',
+      title: '6. 스즈메의 문단속',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_MC01_MC000000069&autoplay=y',
+    },
+    {
+      id: '7',
+      title: '7. 콘크리트 유토피아',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_CI01_LE0000011265&autoplay=y',
+    },
+    {
+      id: '8',
+      title: '8. 달짝지근해 : 7510',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_MM01_MM0000000001&autoplay=y',
+    },
+    {
+      id: '9',
+      title: '9. 타겟',
+      url: 'https://www.wavve.com/player/movie?movieid=MV_MX01_MX000000031&autoplay=y',
+    },
+    {
+      id: '10',
+      title: '10. 시수',
+      url: 'https://www.coupangplay.com/content/81da3c7a-dfda-4bc1-bd97-12af1520e7f6?src=naver_content_search',
+    },
+    // 추가적인 VOD 목록을 이곳에 넣으세요.
+  ];
 
   useEffect(() => {
     if (category === 'movies') {
@@ -60,7 +115,17 @@ const Top10 = () => {
               </View>
             ))
           ) : (
-            <Text style={styles.text}>VOD 목록이 여기에 표시됩니다.</Text>
+            VODList.map((vod) => (
+              <View key={vod.id} style={styles.itemVOD}>
+                <Text style={styles.text}>{vod.title}</Text>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => Linking.openURL(vod.url)} // 여기서 Linking을 사용하여 URL로 이동합니다.
+                >
+                  <Text style={styles.buttonText}>다시보기</Text>
+                </TouchableOpacity>
+              </View>
+            ))
           )}
         </ScrollView>
       )}
@@ -119,6 +184,11 @@ const styles = StyleSheet.create({
   textSmall: {
     fontSize: 14,
     color: 'white', // 더 작은 텍스트 색상
+  },
+  button: {
+    backgroundColor: '#4b7bec', // vod 다시보기 버튼 배경색을 파란색으로 변경
+    padding: 10,
+    borderRadius: 5,
   },
 });
 
