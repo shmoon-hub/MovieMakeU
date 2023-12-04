@@ -1,3 +1,4 @@
+//MainMenu.js
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -25,22 +26,13 @@ export default function MainMenu() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image
-          source={require('./MainMenuAS/logo.png')}
-          style={styles.logo}
-        />
+        <Image source={require('./MainMenuAS/logo.png')} style={styles.logo} />
         <View style={styles.icons}>
           <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Image
-              source={require('./MainMenuAS/cart-icon.png')}
-              style={styles.icon}
-            />
+            <Image source={require('./MainMenuAS/cart-icon.png')} style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('DrawNavi')}>
-            <Image
-              source={require('./MainMenuAS/DrawNavigation-icon.png')}
-              style={styles.icon}
-            />
+          <TouchableOpacity onPress={() => navigation.navigate('Setting')}>
+            <Image source={require('./MainMenuAS/setting_icon.png')} style={styles.icon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -95,6 +87,7 @@ export default function MainMenu() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
