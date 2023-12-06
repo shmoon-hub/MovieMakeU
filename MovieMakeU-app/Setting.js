@@ -1,10 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // 벡터 아이콘 기능 추가
+import { Ionicons } from '@expo/vector-icons';
 
 const Setting = () => {
   const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const openEmail = () => {
     Linking.openURL('mailto:ssy6308msh2@naver.com');
@@ -24,10 +25,31 @@ const Setting = () => {
         <Text style={styles.buttonText}>건의사항</Text>
         <Ionicons name="arrow-forward" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.developerButton]} onPress={() => navigation.navigate('Info')}>
+      <TouchableOpacity style={[styles.button, styles.developerButton]} onPress={() => setModalVisible(true)}>
         <Text style={styles.buttonText}>개발진 소개</Text>
         <Ionicons name="arrow-forward" size={24} color="white" />
       </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>프론트 엔드, 백엔드 : 문승현 </Text>
+            <Text style={styles.modalText}>프론트 엔드, 백엔드 : 현석우 </Text>
+            <Text style={styles.modalText}>개발기간 : 2023/10/23 ~ 2023/12/06 </Text>
+            <Text style={styles.modalText}>후원 : 460202-04-101242 국민 </Text>
+            <TouchableOpacity
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.buttonText}>X  </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <Text style={styles.headerText}>관리자</Text>
       <TouchableOpacity style={[styles.button, styles.adminButton]} onPress={() => navigation.navigate('Admin')}>
         <Text style={styles.buttonText}>관리자 메뉴</Text>
@@ -42,67 +64,90 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  header: {
-    padding: 16,
+  settingButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
     backgroundColor: 'black',
-    borderRadius: 10, // 둥근 모서리 추가
-    marginTop: 50, // 상단 여백 추가
-    alignSelf: 'center', // 중앙 정렬
+    borderRadius: 20,
+    alignSelf: 'center',
+    marginTop: 20,
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  settingButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'black',
     marginVertical: 20,
-    alignSelf: 'flex-start', // 텍스트를 왼쪽으로 정렬
-    paddingLeft: 10, // 왼쪽 여백 추가
+    alignSelf: 'flex-start',
+    paddingLeft: 10,
   },
   button: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // 버튼 안의 내용을 양 끝으로 정렬합니다.
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
     marginVertical: 10,
     backgroundColor: 'orange',
     borderRadius: 10,
-    paddingLeft: 10, // 이 값은 왼쪽 여백을 위해 그대로 유지하거나 조절할 수 있습니다.
+    paddingLeft: 10,
   },
   buttonText: {
     fontSize: 18,
     color: 'white',
-    // marginRight 값을 제거하거나 줄입니다.
-  },
-  arrowText: {
-    fontSize: 18,
-    color: 'white',
+    
   },
   logoutButton: {
-    backgroundColor: 'orange', // 기존 로그아웃 버튼 색상 유지
+    backgroundColor: 'orange',
   },
   suggestionButton: {
-    backgroundColor: 'blue', // 건의사항 버튼 색상 변경
+    backgroundColor: 'blue',
   },
   developerButton: {
-    backgroundColor: 'green', // 개발진 소개 버튼 색상 변경
+    backgroundColor: 'green',
   },
   adminButton: {
-    backgroundColor: 'red', // 관리자 메뉴 버튼 색상 변경
+    backgroundColor: 'red',
   },
-  settingButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 20, // 버튼 내부 좌우 여백을 설정합니다. 필요에 따라 조절하세요.
-    backgroundColor: 'black',
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
     borderRadius: 20,
-    alignSelf: 'center',
-    marginTop: 20,
-    width: '50%', // 버튼의 가로 길이를 화면의 80%로 설정합니다.
-    alignItems: 'center', // 텍스트 중앙 정렬
-    justifyContent: 'center', // 텍스트 중앙 정렬
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  settingButtonText: {
-    color: 'white', // 버튼 안 텍스트 색상을 흰색으로
-    fontSize: 18, // 폰트 사이즈
-    fontWeight: 'bold', // 글자 굵기
+  modalText: {
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  buttonClose: {
+    backgroundColor: 'red',
+    width: 50, // 버튼의 너비 설정
+    height: 50, // 버튼의 높이 설정
+    borderRadius: 25, // 너비와 높이의 절반 크기로 borderRadius 설정
+    justifyContent: 'center', // 내부 텍스트를 중앙에 정렬
+    alignItems: 'center', // 내부 텍스트를 중앙에 정렬
+    padding: 0, // 기존 패딩 제거 (필요에 따라 조정)
   },
 });
 

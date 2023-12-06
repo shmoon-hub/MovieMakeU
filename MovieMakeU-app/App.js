@@ -27,9 +27,12 @@ import Venice from './MovieReview/Venice';
 
 // VodReview 폴더 내 컴포넌트들 임포트
 import Avatar from './VodReview/Avatar';
+import Avengers from './VodReview/Avengers'
+import Matrix from "./VodReview/Matrix"
+import Ode from "./VodReview/Ode"
+import Titanic from "./VodReview/Titanic"
 
 // setting관련 컴포넌트 임포트
-import Info from './Info';
 import Admin from './Admin';
 import AdminInfo from './AdminInfo';
 
@@ -54,10 +57,13 @@ export default function App() {
         <Stack.Screen name="IUMovie" component={IUMovie} />
         <Stack.Screen name="Sleep" component={Sleep} />
         <Stack.Screen name="Venice" component={Venice} />
-        <Stack.Screen name="Avatar" component={Avatar} />   
+        <Stack.Screen name="Avatar" component={Avatar} />  
+        <Stack.Screen name="Avengers" component={Avengers} />
+        <Stack.Screen name="Matrix" component={Matrix} />
+        <Stack.Screen name="Ode" component={Ode} />
+        <Stack.Screen name="Titanic" component={Titanic} /> 
         <Stack.Screen name="ShowCart" component={ShowCart} /> 
         <Stack.Screen name="Setting" component={Setting} />  
-        <Stack.Screen name="Info" component={Info} />
         <Stack.Screen name="Admin" component={Admin} />
         <Stack.Screen name="AdminInfo" component={AdminInfo} />
       </Stack.Navigator>
