@@ -60,20 +60,7 @@ const openIMDb = () => {
   // 새로 추가한 내용
   const renderVideo = () => {
 
-    // Metacritic으로 이동하는 함수
-    const openMetacritic = () => {
-      Linking.openURL('https://www.metacritic.com/');
-    };
-
-    // Rotten Tomatoes로 이동하는 함수
-    const openRottenTomatoes = () => {
-      Linking.openURL('https://www.rottentomatoes.com/');
-    };
-
-    // IMDb로 이동하는 함수
-    const openIMDb = () => {
-      Linking.openURL('https://www.imdb.com/');
-    };
+  
 
     const videoEmbedHTML = `
       <html>

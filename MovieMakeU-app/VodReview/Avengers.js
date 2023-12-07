@@ -13,22 +13,22 @@ import {
 import * as Font from "expo-font";
 
 
-const Avatar = () => {
+const Avengers = () => {
   const [fontLoaded, setFontLoaded] = useState(false);    // 추가된 내용
 
   // Metacritic으로 이동하는 함수
 const openMetacritic = () => {
-  Linking.openURL('https://www.metacritic.com/movie/avatar/user-reviews/');
+  Linking.openURL('https://www.metacritic.com/movie/the-avengers-2012/user-reviews/');
 };
 
 // Rotten Tomatoes로 이동하는 함수
 const openRottenTomatoes = () => {
-  Linking.openURL('https://www.rottentomatoes.com/m/avatar');
+  Linking.openURL('https://www.rottentomatoes.com/m/marvels_the_avengers');
 };
 
 // IMDb로 이동하는 함수
 const openIMDb = () => {
-  Linking.openURL('https://www.imdb.com/title/tt0499549/');
+  Linking.openURL('https://www.imdb.com/title/tt0848228/');
 };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const openIMDb = () => {
 
 
   const handlePressBooking = () => {
-    const url = "https://cokcok.xyz/%EC%95%84%EB%B0%94%ED%83%80/";
+    const url = "https://cokcok.me/%ec%96%b4%eb%b2%a4%ec%a0%b8%ec%8a%a4/";
     Linking.openURL(url).catch(err => console.error('An error occurred', err));
   };
 
@@ -60,27 +60,14 @@ const openIMDb = () => {
   // 새로 추가한 내용
   const renderVideo = () => {
 
-    // Metacritic으로 이동하는 함수
-    const openMetacritic = () => {
-      Linking.openURL('https://www.metacritic.com/');
-    };
-
-    // Rotten Tomatoes로 이동하는 함수
-    const openRottenTomatoes = () => {
-      Linking.openURL('https://www.rottentomatoes.com/');
-    };
-
-    // IMDb로 이동하는 함수
-    const openIMDb = () => {
-      Linking.openURL('https://www.imdb.com/');
-    };
 
     const videoEmbedHTML = `
       <html>
       <body style="margin:0;padding:0;">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Kf14h0dBndI" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/L1bmP5p9q8E" frameborder="0" allowfullscreen></iframe>
       </body>
-      </html>
+    </html>
+  
     `;
 
     return Platform.OS === 'web' ? (
@@ -98,73 +85,73 @@ const openIMDb = () => {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
         <Image
-          source={require('../VodImage/Avatar/avatar_poster.png')}
+          source={require('../VodImage/Avengers/avengers_poster.png')}
           style={styles.poster}
         />
-        <Text style={styles.movieTitle}>아바타</Text>
+        <Text style={styles.movieTitle}>어벤져스</Text>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          행성 판도라와 지구의 피할 수 없는 전쟁! 이 모든 운명을 손에 쥔 제이크의 선택은?
+          최강의 슈퍼히어로들이 모였다!
         </Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>출현</Text>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/SamWorthington.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Avengers/RobertDowneyJr.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>샘 워싱턴 : 제이크 설리 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>로버트 다우니 주니어 : 토니 스타크 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/ZoeSaldana.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Avengers/ScarlettJohansson.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>조 샐다나 : 네이티리 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>스칼렛 요한슨 : 나타샤 로마노프 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/SigourneyWeaver.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Avengers/ChrisHemsworth.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>시고니 위버 : 그레이스 박사 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>크리스 햄스워스 : 토르 박사 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/StephenLang.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Avengers/ChrisEvans.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>스티븐 랭 : 쿼리치 대령 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>크리스 에반스 : 스티브 로저스 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/MichelleRodriguez.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Avengers/MarkRuffalo.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>미셸 로드리게즈 : 트루디 차콘 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>마크 러팔로 : 브루스 배너 역</Text>       
           </View>
         </View>
         <View style={styles.button}>
           <Text style={styles.buttonText}>평점</Text>
         </View>
-        <Text style={styles.star}>★ ★ ★ ★ ★</Text>
+        <Text style={styles.star}>★ ★ ★ ★</Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>평론가 평</Text>
         </View>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          신이 질투할까 걱정스러운 Brave New World    - 이용철 
+          마블의 탄탄대로를 약속하는 걸작    - 김봉석 
         </Text>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          블록버스터 역사의 새 이정표 - 이동진 
+          무엇보다 탁월한 캐릭터 코미디 - 이동진 
         </Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>유튜버 리뷰</Text>
@@ -351,4 +338,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default Avatar;
+export default Avengers;

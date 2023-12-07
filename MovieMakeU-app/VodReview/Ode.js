@@ -13,22 +13,22 @@ import {
 import * as Font from "expo-font";
 
 
-const Avatar = () => {
+const Ode = () => {
   const [fontLoaded, setFontLoaded] = useState(false);    // 추가된 내용
 
   // Metacritic으로 이동하는 함수
 const openMetacritic = () => {
-  Linking.openURL('https://www.metacritic.com/movie/avatar/user-reviews/');
+  Linking.openURL('https://www.metacritic.com/movie/ode-to-my-father/user-reviews/');
 };
 
 // Rotten Tomatoes로 이동하는 함수
 const openRottenTomatoes = () => {
-  Linking.openURL('https://www.rottentomatoes.com/m/avatar');
+  Linking.openURL('https://www.rottentomatoes.com/m/ode_to_my_father');
 };
 
 // IMDb로 이동하는 함수
 const openIMDb = () => {
-  Linking.openURL('https://www.imdb.com/title/tt0499549/');
+  Linking.openURL('https://www.imdb.com/title/tt3812366/');
 };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const openIMDb = () => {
 
 
   const handlePressBooking = () => {
-    const url = "https://cokcok.xyz/%EC%95%84%EB%B0%94%ED%83%80/";
+    const url = "https://cokcok.me/%ea%b5%ad%ec%a0%9c%ec%8b%9c%ec%9e%a5/";
     Linking.openURL(url).catch(err => console.error('An error occurred', err));
   };
 
@@ -60,27 +60,14 @@ const openIMDb = () => {
   // 새로 추가한 내용
   const renderVideo = () => {
 
-    // Metacritic으로 이동하는 함수
-    const openMetacritic = () => {
-      Linking.openURL('https://www.metacritic.com/');
-    };
-
-    // Rotten Tomatoes로 이동하는 함수
-    const openRottenTomatoes = () => {
-      Linking.openURL('https://www.rottentomatoes.com/');
-    };
-
-    // IMDb로 이동하는 함수
-    const openIMDb = () => {
-      Linking.openURL('https://www.imdb.com/');
-    };
 
     const videoEmbedHTML = `
-      <html>
-      <body style="margin:0;padding:0;">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Kf14h0dBndI" frameborder="0" allowfullscreen></iframe>
-      </body>
+        <html>
+        <body style="margin:0;padding:0;">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WQUkndzfUJU" frameborder="0" allowfullscreen></iframe>
+        </body>
       </html>
+  
     `;
 
     return Platform.OS === 'web' ? (
@@ -98,59 +85,59 @@ const openIMDb = () => {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
         <Image
-          source={require('../VodImage/Avatar/avatar_poster.png')}
+          source={require('../VodImage/Ode/Ode.png')}
           style={styles.poster}
         />
-        <Text style={styles.movieTitle}>아바타</Text>
+        <Text style={styles.movieTitle}>국제시장</Text>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          행성 판도라와 지구의 피할 수 없는 전쟁! 이 모든 운명을 손에 쥔 제이크의 선택은?
+          그 때 그 시절, 굳세게 살아온 우리들의 이야기
         </Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>출현</Text>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/SamWorthington.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Ode/HwangJungmin.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>샘 워싱턴 : 제이크 설리 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>황정민 : 덕수 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/ZoeSaldana.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Ode/KimYunjin.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>조 샐다나 : 네이티리 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>김윤진 : 영자 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/SigourneyWeaver.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Ode/OhDalsoo.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>시고니 위버 : 그레이스 박사 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>오달수 : 달구 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/StephenLang.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Ode/JungJinyoung.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>스티븐 랭 : 쿼리치 대령 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>정진영 : 덕수부 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/MichelleRodriguez.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Ode/JangYoungnam.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>미셸 로드리게즈 : 트루디 차콘 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>장영남 : 덕수모 역</Text>       
           </View>
         </View>
         <View style={styles.button}>
@@ -161,10 +148,10 @@ const openIMDb = () => {
           <Text style={styles.buttonText}>평론가 평</Text>
         </View>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          신이 질투할까 걱정스러운 Brave New World    - 이용철 
+          술술 흘러간다. 그렇다고 술술 받아들이겠다는 건 아니다    - 이용철 
         </Text>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          블록버스터 역사의 새 이정표 - 이동진 
+          사람냄새와 쉰내 사이에서 슬렁슬렁 - 이동진 
         </Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>유튜버 리뷰</Text>
@@ -351,4 +338,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default Avatar;
+export default Ode;

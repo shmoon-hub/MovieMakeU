@@ -13,22 +13,22 @@ import {
 import * as Font from "expo-font";
 
 
-const Avatar = () => {
+const Matrix = () => {
   const [fontLoaded, setFontLoaded] = useState(false);    // 추가된 내용
 
   // Metacritic으로 이동하는 함수
 const openMetacritic = () => {
-  Linking.openURL('https://www.metacritic.com/movie/avatar/user-reviews/');
+  Linking.openURL('https://www.metacritic.com/movie/the-matrix/user-reviews/');
 };
 
 // Rotten Tomatoes로 이동하는 함수
 const openRottenTomatoes = () => {
-  Linking.openURL('https://www.rottentomatoes.com/m/avatar');
+  Linking.openURL('https://www.rottentomatoes.com/m/matrix');
 };
 
 // IMDb로 이동하는 함수
 const openIMDb = () => {
-  Linking.openURL('https://www.imdb.com/title/tt0499549/');
+  Linking.openURL('https://www.imdb.com/title/tt0133093/');
 };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const openIMDb = () => {
 
 
   const handlePressBooking = () => {
-    const url = "https://cokcok.xyz/%EC%95%84%EB%B0%94%ED%83%80/";
+    const url = "https://cokcok.me/%eb%a7%a4%ed%8a%b8%eb%a6%ad%ec%8a%a4/";
     Linking.openURL(url).catch(err => console.error('An error occurred', err));
   };
 
@@ -60,27 +60,14 @@ const openIMDb = () => {
   // 새로 추가한 내용
   const renderVideo = () => {
 
-    // Metacritic으로 이동하는 함수
-    const openMetacritic = () => {
-      Linking.openURL('https://www.metacritic.com/');
-    };
-
-    // Rotten Tomatoes로 이동하는 함수
-    const openRottenTomatoes = () => {
-      Linking.openURL('https://www.rottentomatoes.com/');
-    };
-
-    // IMDb로 이동하는 함수
-    const openIMDb = () => {
-      Linking.openURL('https://www.imdb.com/');
-    };
 
     const videoEmbedHTML = `
       <html>
       <body style="margin:0;padding:0;">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Kf14h0dBndI" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T3BW8kSMXa8" frameborder="0" allowfullscreen></iframe>
       </body>
-      </html>
+    </html>
+  
     `;
 
     return Platform.OS === 'web' ? (
@@ -98,59 +85,59 @@ const openIMDb = () => {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
         <Image
-          source={require('../VodImage/Avatar/avatar_poster.png')}
+          source={require('../VodImage/Matrix/matrix_poster.png')}
           style={styles.poster}
         />
-        <Text style={styles.movieTitle}>아바타</Text>
+        <Text style={styles.movieTitle}>매트릭스</Text>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          행성 판도라와 지구의 피할 수 없는 전쟁! 이 모든 운명을 손에 쥔 제이크의 선택은?
+          네오, 너무나 현실 같은 꿈을 꾸어본 적이 있나? 만약 그 꿈에서 깨어나지 못한다면? 그럴 경우 꿈속의 세계와 현실의 세계를 어떻게 구분하겠나?
         </Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>출현</Text>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/SamWorthington.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Matrix/KeanuReeves.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>샘 워싱턴 : 제이크 설리 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>키아누 리브스 : 네오 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/ZoeSaldana.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Matrix/CarrieAnneMoss.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>조 샐다나 : 네이티리 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}> 캐리 앤 모스 : 트리니티 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/SigourneyWeaver.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Matrix/LaurenceFishburne.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>시고니 위버 : 그레이스 박사 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>로렌스 피시번 : 모피어스 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/StephenLang.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Matrix/HugoWeaving.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>스티븐 랭 : 쿼리치 대령 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>휴고 위빙 : 스미스 요원 역</Text>       
           </View>
         </View>
         <View style={styles.actorInfoContainer}>                     
           <Image
-            source={require('../VodImage/Avatar/MichelleRodriguez.jpg')} // 배우 이미지 경로를 업데이트하세요.
+            source={require('../VodImage/Matrix/GloriaFoster.jpg')} // 배우 이미지 경로를 업데이트하세요.
             style={styles.actorImage}
           />
           <View style={styles.actorRoleContainer}>
-          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>미셸 로드리게즈 : 트루디 차콘 역</Text>       
+          <Text style={[styles.actorRoleText, { fontFamily: 'YoonYeongRg' }]}>글로리아 포스터 : 오라클 역</Text>       
           </View>
         </View>
         <View style={styles.button}>
@@ -161,10 +148,7 @@ const openIMDb = () => {
           <Text style={styles.buttonText}>평론가 평</Text>
         </View>
         <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          신이 질투할까 걱정스러운 Brave New World    - 이용철 
-        </Text>
-        <Text style={[styles.movieSynopsis, fontLoaded && styles.customFont]}>
-          블록버스터 역사의 새 이정표 - 이동진 
+          현대의 창의성은 무에서 유를 창조하는것이 아니라, 비범하게 선택해서 독창적으로 배열하는 능력 - 이동진 
         </Text>
         <View style={styles.button}>
           <Text style={styles.buttonText}>유튜버 리뷰</Text>
@@ -351,4 +335,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default Avatar;
+export default Matrix;
