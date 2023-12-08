@@ -16,6 +16,22 @@ import * as Font from "expo-font";
 const Sleep = () => {
   const [fontLoaded, setFontLoaded] = useState(false);    // 추가된 내용
 
+  // Metacritic으로 이동하는 함수 -> 아바타로 설정되어 있음 나무위키에서 천박사 퇴마 연구소 검색후 각각의 해외 영화사이트에 들어가서 링크 가져와서 붙여넣기
+const openMetacritic = () => {
+  Linking.openURL('https://pedia.watcha.com/ko-KR/contents/m5mYYzj');
+};
+
+// Rotten Tomatoes로 이동하는 함수
+const openRottenTomatoes = () => {
+  Linking.openURL('https://m.kinolights.com/title/105111?tab=review');
+};
+
+// IMDb로 이동하는 함수
+const openIMDb = () => {
+  Linking.openURL('https://www.imdb.com/title/tt8209702/reviews/?ref_=tt_ov_rt');
+};
+
+
   useEffect(() => {
     async function loadFonts() {
       try {
@@ -142,10 +158,15 @@ const Sleep = () => {
         <View style={styles.button}>
           <Text style={styles.buttonText}>해외 리뷰</Text>
         </View>
-        <Image
-          source={require('../MovieImage/Sleep_image/SleepGlobalRV.png')} // 이미지 파일의 경로를 수정하세요.
-          style={styles.reviewImage}
-        />
+        <TouchableOpacity style={styles.linkButtonMetacritic} onPress={openMetacritic}>
+          <Text style={styles.linkButtonText}>WATCHA</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButtonRottenTomatoes} onPress={openRottenTomatoes}>
+          <Text style={styles.linkButtonText}>Kinolights</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButtonIMDb} onPress={openIMDb}>
+          <Text style={styles.linkButtonTextIMDb}>IMDb</Text>
+        </TouchableOpacity>
       </ScrollView>
       <TouchableOpacity style={styles.bookingButton} onPress={handlePressBooking}>
         <Text style={styles.bookingButtonText}>예매하기</Text>
@@ -278,6 +299,38 @@ const styles = StyleSheet.create({
     height: 200, // 이미지의 높이를 설정합니다.
     resizeMode: 'contain', // 이미지의 비율을 유지하면서 컨테이너에 맞춥니다.
     marginTop: 10, // 이미지 위의 마진을 설정합니다.
+  },
+  linkButtonMetacritic: {
+    backgroundColor: 'green', // Metacritic 버튼을 검은색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonRottenTomatoes: {
+    backgroundColor: 'red', // Rotten Tomatoes 버튼을 빨간색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonIMDb: {
+    backgroundColor: 'yellow', // IMDb 버튼을 노란색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonTextIMDb: {
+    color: 'black', // IMDb 버튼의 텍스트를 검은색으로 설정
+    fontSize: 16,
+  },
+  linkButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
   
 });

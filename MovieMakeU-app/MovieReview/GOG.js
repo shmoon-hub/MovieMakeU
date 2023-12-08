@@ -16,6 +16,21 @@ import * as Font from "expo-font";
 const GOG = () => {
   const [fontLoaded, setFontLoaded] = useState(false);    // 추가된 내용
 
+   // Metacritic으로 이동하는 함수 -> 아바타로 설정되어 있음 나무위키에서 갤럭시 오브 가디언즈3 검색후 각각의 해외 영화사이트에 들어가서 링크 가져와서 붙여넣기
+const openMetacritic = () => {
+  Linking.openURL('https://www.metacritic.com/movie/guardians-of-the-galaxy-vol-3/user-reviews/');
+};
+
+// Rotten Tomatoes로 이동하는 함수
+const openRottenTomatoes = () => {
+  Linking.openURL('https://www.rottentomatoes.com/m/guardians_of_the_galaxy_vol_3/reviews?intcmp=rt-scorecard_tomatometer-reviews');
+};
+
+// IMDb로 이동하는 함수
+const openIMDb = () => {
+  Linking.openURL('https://www.imdb.com/title/tt6791350/reviews/?ref_=tt_ov_rt');
+};
+
   useEffect(() => {
     async function loadFonts() {
       try {
@@ -142,10 +157,15 @@ const GOG = () => {
         <View style={styles.button}>
           <Text style={styles.buttonText}>해외 리뷰</Text>
         </View>
-        <Image
-          source={require('../MovieImage/GOG_image/GOGGlobalRV.png')} // 이미지 파일의 경로를 수정하세요.
-          style={styles.reviewImage}
-        />
+        <TouchableOpacity style={styles.linkButtonMetacritic} onPress={openMetacritic}>
+          <Text style={styles.linkButtonText}>Metacritic</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButtonRottenTomatoes} onPress={openRottenTomatoes}>
+          <Text style={styles.linkButtonText}>Rotten Tomatoes</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButtonIMDb} onPress={openIMDb}>
+          <Text style={styles.linkButtonTextIMDb}>IMDb</Text>
+        </TouchableOpacity>
       </ScrollView>
       <TouchableOpacity style={styles.bookingButton} onPress={handlePressBooking}>
         <Text style={styles.bookingButtonText}>예매하기</Text>
@@ -278,6 +298,38 @@ const styles = StyleSheet.create({
     height: 200, // 이미지의 높이를 설정합니다.
     resizeMode: 'contain', // 이미지의 비율을 유지하면서 컨테이너에 맞춥니다.
     marginTop: 10, // 이미지 위의 마진을 설정합니다.
+  },
+  linkButtonMetacritic: {
+    backgroundColor: 'green', // Metacritic 버튼을 검은색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonRottenTomatoes: {
+    backgroundColor: 'red', // Rotten Tomatoes 버튼을 빨간색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonIMDb: {
+    backgroundColor: 'yellow', // IMDb 버튼을 노란색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonTextIMDb: {
+    color: 'black', // IMDb 버튼의 텍스트를 검은색으로 설정
+    fontSize: 16,
+  },
+  linkButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
   
 });

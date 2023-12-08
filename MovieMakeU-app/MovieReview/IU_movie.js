@@ -16,6 +16,21 @@ import * as Font from "expo-font";
 const IU_movie = () => {
   const [fontLoaded, setFontLoaded] = useState(false);    // 추가된 내용
 
+    // Metacritic으로 이동하는 함수 -> 아바타로 설정되어 있음 나무위키에서 아이유 검색후 각각의 국내 영화사이트에 들어가서 링크 가져와서 붙여넣기
+const openMetacritic = () => {
+  Linking.openURL('https://m.kinolights.com/title/126214?tab=review');
+};
+
+// Rotten Tomatoes로 이동하는 함수
+const openRottenTomatoes = () => {
+  Linking.openURL('https://search.naver.com/search.naver?where=nexearch&query=%EC%98%81%ED%99%94+%EC%95%84%EC%9D%B4%EC%9C%A0%20%EC%BD%98%EC%84%9C%ED%8A%B8%20:%20%EB%8D%94%20%EA%B3%A8%EB%93%A0%20%EC%95%84%EC%9B%8C+%ED%8F%89%EC%A0%90');
+};
+
+// IMDb로 이동하는 함수
+const openIMDb = () => {
+  Linking.openURL('https://movie.daum.net/moviedb/grade?movieId=173031');
+};
+
   useEffect(() => {
     async function loadFonts() {
       try {
@@ -103,10 +118,15 @@ const IU_movie = () => {
         <View style={styles.button}>
           <Text style={styles.buttonText}>국내 리뷰</Text>
         </View>
-        <Image
-          source={require('../MovieImage/IU_movie_image/IU_local_Review.png')} // 이미지 파일의 경로를 수정하세요.
-          style={styles.reviewImage}
-        />
+        <TouchableOpacity style={styles.linkButtonMetacritic} onPress={openMetacritic}>
+          <Text style={styles.linkButtonText}>Kinolights </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButtonRottenTomatoes} onPress={openRottenTomatoes}>
+          <Text style={styles.linkButtonText}>naver</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButtonIMDb} onPress={openIMDb}>
+          <Text style={styles.linkButtonTextIMDb}>Daum</Text>
+        </TouchableOpacity>
       </ScrollView>
       <TouchableOpacity style={styles.bookingButton} onPress={handlePressBooking}>
         <Text style={styles.bookingButtonText}>예매하기</Text>
@@ -240,6 +260,39 @@ const styles = StyleSheet.create({
     resizeMode: 'contain', // 이미지의 비율을 유지하면서 컨테이너에 맞춥니다.
     marginTop: 10, // 이미지 위의 마진을 설정합니다.
   },
+  linkButtonMetacritic: {
+    backgroundColor: 'green', // Metacritic 버튼을 검은색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonRottenTomatoes: {
+    backgroundColor: 'red', // Rotten Tomatoes 버튼을 빨간색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonIMDb: {
+    backgroundColor: 'yellow', // IMDb 버튼을 노란색으로 설정
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  linkButtonTextIMDb: {
+    color: 'black', // IMDb 버튼의 텍스트를 검은색으로 설정
+    fontSize: 16,
+  },
+  linkButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  
   
 });
 
