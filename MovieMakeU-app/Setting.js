@@ -1,3 +1,4 @@
+// 원본 setting.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -5,11 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 const Setting = () => {
   const navigation = useNavigation();
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const openEmail = () => {
-    Linking.openURL('mailto:ssy6308msh2@naver.com');
-  };
+  const [developerModalVisible, setDeveloperModalVisible] = useState(false);
+  const [suggestionModalVisible, setSuggestionModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -21,19 +19,37 @@ const Setting = () => {
         <Text style={styles.buttonText}>로그아웃</Text>
         <Ionicons name="arrow-forward" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.suggestionButton]} onPress={openEmail}>
+      <TouchableOpacity style={[styles.button, styles.suggestionButton]} onPress={() => setSuggestionModalVisible(true)}>
         <Text style={styles.buttonText}>건의사항</Text>
         <Ionicons name="arrow-forward" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.developerButton]} onPress={() => setModalVisible(true)}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={suggestionModalVisible}
+        onRequestClose={() => setSuggestionModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>이메일 주소: ssy6308msh2@naver.com으로 보내시기 바랍니다</Text>
+            <TouchableOpacity
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setSuggestionModalVisible(false)}
+            >
+              <Text style={styles.buttonText}>X</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+      <TouchableOpacity style={[styles.button, styles.developerButton]} onPress={() => setDeveloperModalVisible(true)}>
         <Text style={styles.buttonText}>개발진 소개</Text>
         <Ionicons name="arrow-forward" size={24} color="white" />
       </TouchableOpacity>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        visible={developerModalVisible}
+        onRequestClose={() => setDeveloperModalVisible(false)}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -43,9 +59,9 @@ const Setting = () => {
             <Text style={styles.modalText}>후원 : 460202-04-101242 국민 </Text>
             <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(false)}
+              onPress={() => setDeveloperModalVisible(false)}
             >
-              <Text style={styles.buttonText}>X  </Text>
+              <Text style={styles.buttonText}>X</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -101,7 +117,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: 'white',
-    
+   
   },
   logoutButton: {
     backgroundColor: 'orange',
