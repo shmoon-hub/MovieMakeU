@@ -1,46 +1,45 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import app from './firebase'; // 실제 firebase 설정 파일의 경로에 맞게 조정해주세요.
-import { useNavigation } from '@react-navigation/native'; // react-navigation이 설치되어 있어야 합니다.
+import app from './firebase'; // 실제 파이어베이스 설정 파일 경로에 맞게 조정
+import { useNavigation } from '@react-navigation/native';
+import { useAudioPlayer } from './useAudioPlayer'; // useAudioPlayer 임포트
+import LoadingScreen from './LoadingScreen'; // 로딩 화면 임포트
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // 오류 메시지 상태
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
   const navigation = useNavigation();
+  const playSound = useAudioPlayer(); // 오디오 재생 함수
 
   const auth = getAuth(app);
 
   const handleLogin = () => {
+    playSound(); // 로그인 버튼 클릭 시 소리 재생
+    setLoading(true); // 로딩 상태를 true로 설정
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // 로그인 성공 시 MainMenu 화면으로 이동합니다.
+        // 로그인 성공 시 MainMenu 화면으로 이동
         navigation.navigate('MainMenu');
       })
       .catch((error) => {
-        // 로그인 실패 시 오류 코드에 따라 다른 메시지를 설정합니다.
-        let message = '';
-        switch (error.code) {
-          case 'auth/invalid-email':
-            message = '잘못된 이메일 형식입니다.';
-            break;
-          case 'auth/user-disabled':
-            message = '이 계정은 사용이 중지되었습니다.';
-            break;
-          case 'auth/user-not-found':
-            message = '계정을 찾을 수 없습니다.';
-            break;
-          case 'auth/wrong-password':
-          case 'auth/invalid-login-credentials': // 이 줄을 추가하세요.
-            message = '비밀번호가 잘못되었습니다.';
-            break;
-          default:
-            message = '로그인에 실패했습니다. 다시 시도해주세요.';
-        }
-        setErrorMessage(message);
+        // 로그인 실패 시 오류 메시지 표시
+        Alert.alert('Login failed', error.message);
+      })
+      .finally(() => {
+        setLoading(false); // 로딩 상태를 false로 설정
       });
   };
+
+  // 로딩 중일 때 로그인 버튼 비활성화
+  const isButtonDisabled = loading;
+
+  // 로딩 중일 때 로딩 화면 표시
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <View style={styles.container}>
@@ -65,15 +64,18 @@ export default function Login() {
           autoCapitalize="none"
         />
       </View>
-      {errorMessage ? (
-        <Text style={styles.errorText}>{errorMessage}</Text>
-      ) : null}
       <View style={styles.buttonContainer}>
-        <Button title="로그인" onPress={handleLogin} color="#1E6738" />
+        <Button
+          title="로그인"
+          onPress={handleLogin}
+          color="#1E6738"
+          disabled={isButtonDisabled} // 로딩 중일 때 버튼 비활성화
+        />
       </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -102,10 +104,5 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
-  },
-  errorText: {
-    color: 'red',
-    textAlign: 'center',
-    marginBottom: 10,
   },
 });

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Checkbox from 'expo-checkbox';
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-
+import { useAudioPlayer } from './useAudioPlayer'; // useAudioPlayer 임포트
 // Firebase 설정 초기화 (이미 초기화가 되어있다면 생략 가능)
 const firebaseConfig = {
   apiKey: "AIzaSyDljLuGD6TUhnkgezYrFtGeta4p9VwP1eQ",
@@ -50,7 +50,7 @@ const moviesData = [
     image: require('./MoviePoster/GOG_MoviePoster.png'),
     imageURL: 'https://lh3.googleusercontent.com/fife/AK0iWDzHqlU5mWxISFbp7E4W2quFE9rz0FMSlKXwUbTXnKtqQZvEsLSfy7yR33bmXHQAOlRXowxqrUhsq0N07B2cL9EzwGmTbR0Ri9wIvdgZnuI9Tafp6EhsI2599w5QciDsZpqycZ7K-UdaLmHxDtj_48e6fKIUHtFEMG0y67uixxGNSQsuOzvgLaVHy7xmJ4uPBMHyZrFv0k92bEOiuflgueTgLweTn0dJfPh0ycV8oA5nCepME6RFMY_bLK8JDmhWOyDR9MkAmfAndEA8EFnW0P21YdROGqv4pMaxwKCSY5xXVO84VD0J-BrHqOFsyg07INQ0rbd_Ekx8bdeLtUW7T4UwTHq4xMIKFdaagUM-H16zDHbr1n5g8YB0l1wD2-rv9ZVsI2Q-oamc52dCH8qhgJ1fKQNNvziJIupCT-uZ18VK_T-ctt5Sfc4R2DNKbu-5wzpCC1UfnZOIy_8Y15ql6Gg8Qq9JPGgKzK-cEWOAoUyfhkmqR7xdydGbh1QsdLf7HYqOIHkjFkl4vaGpJ7kLoW0vKzMgzAk6Q00fFCwzA5Eo8O_EhuObmMRXUcAtBrBgodJ7RZPfL7PUc0yfcJ7Au1_dbcc3Qu4EiHbTJVI2tMJLjLQq6FBWtzhO1aY-6jcjVG_ZRgG1FizMIQc5-G3nk60maZjwgXSJmDmibItP2xVu9VBA1d86Q1Rsx4SjY19w6_9L8SsMlV9Gzhz3LwJUA3-VYGh8xhv9RLr4C1lTSMm_gMUOktaKHadLIIBY3NkxMLo103Ie2NRaXUgcxvwYxrth-hdkYXY1eSFwyynNuJ36ceZS589skMPHWvJ09GhqOBdMVI6jNa3DwX6YAUFfW0rPu6jIQmjznus9WewdIIDO23QqgEfKb5Rk-rohqytz32Y9bo3k708Q2JXz1SOyGrYqa_HsitwrOGoExB2ILV7Dvhtzl3G8ou59tBDpXok4BpcvDZVi35O-HWZ2syQQu0vRu-qXFtQRtG5utpLDMihnj5p-LV6hNY9vUw4rW04X6i3vVBVIt-rTGAGgNz-njkTfNkNmLbBKHcIYVyhwUV9JIB3eQ4SK4Ig03qIIaGL0h6MOzGAPW0bSqlPrGPGhIPZNPeb8kClnp5IrHyyQ7CoNvAwEjCJVAKtheb8BuhyXavE2aId74yO19FCp_iFYwMXybtBzALZlVtGjOc16fBNMF2AT0mum9gk4S-D04TavkQyuiZc3u-NoQLf5ve-vk1f4ahp-nu-NXUtI84g973dYD-svT_9S_3WvEOa8rMhn0z0kX57bjVrJYxs10eqmVzLRuPSIH_oR_2ILqlEpwQsxz1iRahKGXKlxueHMN66lGUY-LLfUNJGNjCK6DkzGclDF_mpuFRr2HyjNluoDzmFx98nFI_YtvmkOPZwzK1F_ZdBTPbOlV1teoKXnVme3QbH2EgHRdv9E_SttqGVzFfGLOdu_LvmDcAge-U_OG6_UWIw7Y44SIH2psOdjIan4HpOPZvvfheawDL2KcqpsygxebfE_4QXsaxk=w1148-h1652' // 가정된 이미지 URL
   },
-  { 
+   { 
     id: '6', 
     title: '서울의 봄', 
     image: require('./MoviePoster/1212 The Day.png'),
@@ -80,12 +80,12 @@ const moviesData = [
     image: require('./MoviePoster/Five Nights at Freddy.png'),
     imageURL: 'https://lh3.googleusercontent.com/fife/AK0iWDzy3Vl-_CTE967nWyIogcyhdmd68y09Clgm3BQJjKt1c6HNS7Z59pMI0YvO9yD0ociKjma1E8TOJeXaeV_6ngznf7EFNln-ZD1cDIoiUyAm7nkXHrIxWhwh2Z5hbDC18MIhLXYkBmEYU99OZqxjj_siWNt5dHmuthhk2ymCyLN29_y90Nb7GWmn-2ozs5M3UtjMm2TRg9Qk3cvrS93ZfAgOuZ_G7xJEYqRQa1Z607rIefLP1Na3hIKmPFVekb3ndQU40W50wOO0vMzX6hPe1HGfNpTabqyXqxFr-iXOY5UM_o81U3XvAQ0sPjXABVtzKPLwy_QUnpHmvx_xsrbmarpy9fXTSsIBvgJzAR3bHMDyNc8Te-v023WDz_Qb4gcwYr-Nrq1s7pk-J6MJXS6rjCghy9NJb7iSk-IsoI6th2qEX2jdUBZnnMJStAHnWdDgDmI2KaEhg4MpATOZLsWCd2-GQ-cQvWjuX8ckKxTNUtLhHoBZJDIawdf-jkMotpAv0TCc2LCixuhY1DDsWdFWvQfmDVWN7ZPHzQLGplBYDRxUotgWRvoporST_0d_cOdZQnd7ccp2V_c5SsRJKA5Syc01vXxWTgqdYt4a8qNq7DmbvjT12B5ymiEXLa3hLWJcTMW4kRlgtZ7QBJ5qHuupMc9taadIcM2VL76gAO1E3rfAvWD-TMkWhvZ1RtuB1SjJLjY_ee6sp1p_kQA0PSasmna0XxyHhhOlPsrrTlBoCZTuQzpv3551Lpt_4mtpLRlJSmm3U6AtXpJ_slLM7qtfeoJqayUnhPig_BpwEOunU2VJXKtmTvhigLpjw1pawvARnA8cv5eVDin0mnh8zhTXSrB9Ys8YQ02J69HFMP1S2cN4WDVWLVR2Im0TWcmLPaSwrw1C1qYfzrNjzIZngw8cvQQNevl8zG9dbWG896857_11fBifu_M08vb16dojQKk5j0K-3P_mDmgrmccXgPWRoSxJp792GL79uyIGwFkpbFktmK2ey1ElihgHJgcGGkMWJ6VU8feaePw8nUwU50Pp2CRghD27eJM6oejmmiw2wDL2rIQAv_sI_iZxwcVF0mLwkdknNrH6GXVIWo6J2h8v8TdMjXjToZwG34BrunsWTJbqvfCsZwflQ0WH7IYi4Z33ppDGhIUEeT414Q3utgTGlbaR8JUZC2sChnYtWzD98ZW5OSRyjqtBC0NDXLEqzT8-cmzXS4sRMaUkfEl2BUjYfJsaTcDB0I382ECPlVBrQHpQotQOaGWdCzSSRRTtGRfNnZl7LrkJY-fv_7UbUspcrDp-KzTZ2HOhjix7bW6fvdyv0fVdvg4kVy7DqHhm62HowUl9jvW9Su3hhsabHwpGPkgyy1xWwPm2dd7gMk8yPdnBieUoNPl5UKDdBWxFZJeG_iKa2XoJ5cXruGnIXxZi13j3E6zHt5BRCHzlopxymWSvhtICvmN92iAiQOblTIjx7MMx4rYhaskloR26xAtmp4YhQj0-eX7VJPAgOyLQu5Xn0Uxkq8WwpvY=w1640-h2360' // 가정된 이미지 URL
   },
-
 ];
 
 export default function AddCart() {
   const [selectedMovies, setSelectedMovies] = useState({});
   const navigation = useNavigation();
+  const playSound = useAudioPlayer(); // 오디오 재생 함수
 
   const handleSelectMovie = (id) => {
     const selectedMovie = moviesData.find(movie => movie.id === id);
@@ -96,9 +96,12 @@ export default function AddCart() {
         imageURL: selectedMovie.imageURL
       }
     }));
+
+
   };
 
   const handleAddToCart = async () => {
+    playSound();
     try {
       for (const movieId in selectedMovies) {
         if (selectedMovies[movieId]) {
@@ -128,10 +131,7 @@ export default function AddCart() {
         onValueChange={() => handleSelectMovie(item.id)}
         color={selectedMovies[item.id] ? '#4630EB' : undefined}
       />
-      <Image
-        source={item.image}
-        style={styles.movieImage}
-      />
+      <Image source={item.image} style={styles.movieImage} />
       <Text style={styles.movieTitle}>{item.title}</Text>
     </View>
   );

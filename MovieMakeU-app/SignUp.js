@@ -1,21 +1,22 @@
-// SignUp.js
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigation } from '@react-navigation/native'; // useNavigation 훅을 import합니다.
-import app from './firebase'; // 경로 확인 필요
+import { useNavigation } from '@react-navigation/native';
+import app from './firebase'; // 파이어베이스 설정 파일 경로 확인 필요
+import { useAudioPlayer } from './useAudioPlayer'; // useAudioPlayer 임포트
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  // useNavigation 훅을 사용해서 navigation 객체를 가져옵니다.
   const navigation = useNavigation();
+  const playSound = useAudioPlayer(); // 오디오 재생 함수
 
   const auth = getAuth(app);
 
   const handleSignUp = async () => {
+    playSound();
     if (email.trim() === '' || password.trim() === '') {
       Alert.alert('오류', '이메일과 비밀번호를 모두 입력해주세요.');
       return;
