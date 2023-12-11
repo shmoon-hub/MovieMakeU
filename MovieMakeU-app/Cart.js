@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
-// Firebase 설정 초기화
-const firebaseConfig = {
-  apiKey: "AIzaSyDljLuGD6TUhnkgezYrFtGeta4p9VwP1eQ",
-  authDomain: "moviemakeu.firebaseapp.com",
-  databaseURL: "https://moviemakeu-default-rtdb.firebaseio.com",
-  projectId: "moviemakeu",
-  storageBucket: "moviemakeu.appspot.com",
-  messagingSenderId: "308608060636",
-  appId: "1:308608060636:web:a7d7dac61ce6872fa1f819"
-};
-initializeApp(firebaseConfig);
-const db = getFirestore();
+import {  collection, getDocs } from 'firebase/firestore';
+
 
 export default function Cart() {
   const navigation = useNavigation();
