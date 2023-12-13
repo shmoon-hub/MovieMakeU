@@ -38,11 +38,8 @@ return (
               style={styles.icon}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => { playSound(); navigation.navigate('DrawNavi'); }}>
-            <Image
-              source={require('./MainMenuAS/DrawNavigation-icon.png')}
-              style={styles.icon}
-            />
+          <TouchableOpacity onPress={() => { playSound(); navigation.navigate('Setting'); }}>
+            <Image source={require('./MainMenuAS/setting_icon.png')} style={styles.icon} />
           </TouchableOpacity>
         </View>
       </View>
