@@ -9,13 +9,16 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
+    "@expo-google-fonts/pacifico": "^0.2.3",
     "@react-native-community/checkbox": "^0.5.16",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "expo": "~49.0.15",
+    "expo-av": "~13.4.1",
     "expo-checkbox": "~2.4.0",
-    "expo-font": "^11.6.0",
+    "expo-font": "~11.4.0",
     "expo-location": "~16.1.0",
     "expo-status-bar": "~1.6.0",
     "firebase": "^10.5.2",
@@ -27,8 +30,7 @@
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-native-web": "~0.19.6",
-    "react-native-webview": "13.2.2",
-    "expo-av": "~13.4.1"
+    "react-native-webview": "13.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

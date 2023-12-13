@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import * as Font from 'expo-font';
 import { Audio } from 'expo-av';
+import { useFonts, Pacifico_400Regular} from '@expo-google-fonts/pacifico'; // Inter 폰트 추가
 
 export default function Start() {
   const navigation = useNavigation();
-  const [fontLoaded, setFontLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [sound, setSound] = useState();
+
+  // Google Fonts를 사용하도록 변경
+  let [fontsLoaded] = useFonts({
+    Pacifico_400Regular,
+  });
+
+  // 폰트 로딩 상태 확인
+  useEffect(() => {
+    setIsLoading(!fontsLoaded);
+  }, [fontsLoaded]);
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
-       require('./assets/sound/click-sound.mp3') // 여기를 변경했습니다
+      require('./assets/sound/click-sound.mp3')
     );
     setSound(sound);
-  
+
     await sound.playAsync();
   }
-  
 
-  React.useEffect(() => {
+  useEffect(() => {
     return sound
       ? () => {
           sound.unloadAsync(); 
@@ -27,18 +36,8 @@ export default function Start() {
       : undefined;
   }, [sound]);
 
-  useEffect(() => {
-    async function loadFonts() {
-      await Font.loadAsync({
-        'Amarillo': require('./assets/fonts/Amarillo.ttf'), // 폰트 파일의 경로를 정확하게 지정하세요.
-      });
-      setFontLoaded(true);
-    }
-    loadFonts();
-  }, []);
-
-  if (!fontLoaded) {
-    return <View style={styles.container}><Text>Loading...</Text></View>; // 폰트 로딩 중 화면
+  if (isLoading) {
+    return <View style={styles.container}><Text>Loading...</Text></View>;
   }
 
   return (
@@ -48,10 +47,10 @@ export default function Start() {
     >
       <View style={styles.container}>
         <View style={styles.logoContainer}>
-          <Text style={styles.logoText}>MovieMakeU</Text>
+          <Text style={[styles.logoText, { fontFamily: 'Pacifico_400Regular' }]}>MovieMakeU</Text>
         </View>
         <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => {playSound(); navigation.navigate('Login'); }}>
+          <TouchableOpacity style={styles.button} onPress={() => {playSound(); navigation.navigate('Login'); }}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => {playSound(); navigation.navigate('SignUp'); }}>
@@ -63,15 +62,17 @@ export default function Start() {
   );
 }
 
+// 나머지 styles 객체는 그대로 유지
+
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: "cover", // or 'stretch'
+    resizeMode: 'cover',
   },
   container: {
     flex: 1,
     paddingHorizontal: 0,
-    backgroundColor: 'rgba(0,0,0,0.3)', // Semi-transparent background
+    backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'center',
   },
   logoContainer: {
@@ -79,10 +80,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoText: {
-    fontSize: 24,
+    fontSize: 45,
     fontWeight: 'bold',
     color: 'white',
-    fontFamily: 'Amarillo', // 커스텀 폰트 적용
+    fontFamily: 'Pacifico_400Regular',
   },
   buttonContainer: {
     width: '80%',
